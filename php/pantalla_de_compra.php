@@ -54,7 +54,7 @@ endif;
     <?php include "head_html.php"?>
     <title>Pantalla de compra</title>
     <!-- icono -->
-    <link rel="shortcut icon" href="../img/logo.jpg">
+    <link rel="shortcut icon" href="../img/logo.png">
     <!-- normalize -->
     <link rel="preload" href="../css/normalize.css" as="style">
     <link rel="stylesheet" href="../css/normalize.css">
@@ -78,7 +78,7 @@ endif;
                     <span class="icon-bar"></span>
                 </button>
                 <!-- marca -->
-                <a class="navbar-brand" href="../index.php">Geek Store F</a>
+                <a class="navbar-brand" href="../index.php">MicroTechPC</a>
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">

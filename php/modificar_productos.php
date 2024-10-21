@@ -13,7 +13,7 @@ if (!isset($_SESSION['sesion_personal'])) {
     <?php include "head_html.php";?>
     <title>Modo dios</title>
     <!-- icono -->
-    <link rel="shortcut icon" href="../img/logo.jpg">
+    <link rel="shortcut icon" href="../img/logo.png">
     <!-- normalize -->
     <link rel="preload" href="../css/normalize.css" as="style">
     <link rel="stylesheet" href="../css/normalize.css">
@@ -36,7 +36,7 @@ if (!isset($_SESSION['sesion_personal'])) {
                     <span class="icon-bar"></span>
                 </button>
                 <!-- marca -->
-                <a class="navbar-brand" href="../index.php">Geek Store F</a>
+                <a class="navbar-brand" href="../index.php">MicroTechPC</a>
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -56,7 +56,7 @@ if (!isset($_SESSION['sesion_personal'])) {
 
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                            aria-expanded="false">Modo Administrador <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Modificar productos</a></li>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['sesion_personal'])) {
                 <?php
                 while ($row = mysqli_fetch_array($result)): ?>
                     <tr>
-                        <td><img class="imagen" src="../img/productos/<?= $row['id_producto'] ?>.png" alt="<?= $row['nombre_producto']?>"></td>
+                        <td><img class="imagen" src="../img/productos/<?= $row['id_producto'] ?>.jpeg" alt="<?= $row['nombre_producto']?>"></td>
                         <td><?= $row['nombre_producto']?></td>
                         <td><?= $row['descripcion_producto']?></td>
                         <td><?= $row['cantidad_disponible']?></td>

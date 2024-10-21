@@ -10,7 +10,7 @@ include_once("./config/config.php");
     <?php include("./php/head_html.php"); ?>
     <title>Página de inicio</title>
     <!-- icono -->
-    <link rel="shortcut icon" href="./img/logo.jpg">
+    <link rel="shortcut icon" href="./img/logo.png">
     <!-- normalize -->
     <link rel="preload" href="./css/normalize.css" as="style">
     <link rel="stylesheet" href="./css/normalize.css">
@@ -34,7 +34,7 @@ include_once("./config/config.php");
                         <span class="icon-bar"></span>
                     </button>
                     <!-- marca -->
-                    <a class="navbar-brand" href="#">Geek Store F</a>
+                    <a class="navbar-brand" href="#">MicroTechPC</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <!-- menú izquierdo-->
@@ -66,7 +66,7 @@ include_once("./config/config.php");
                         <?php if($_SESSION['sesion_personal']['super']==1): ?>
                             <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                            aria-expanded="false">Modo Administrador <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="./php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
                             <li><a href="./php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span> Modificar productos</a></li>
@@ -140,7 +140,7 @@ include_once("./config/config.php");
     </div>
 
     <!-- panel del titulo -->
-    <h3 class="container text-center" style="margin-bottom: .6em; margin-top: .5em;">Lista de articulos</h3>
+    <h2 class="container text-center" style="margin-bottom: .6em; margin-top: .5em;">Catalogo de equipos</h2>
 
     <!-- lista de productos -->
     <main class="principal">
@@ -162,7 +162,7 @@ include_once("./config/config.php");
                 }
                 ?>
             <div class="card text-center">
-                <img class="card-img-top" src="./img/productos/<?= $row['id_producto'] ?>.png" alt="Card image cap">
+                <img class="card-img-top" src="./img/productos/<?= $row['id_producto'] ?>.jpeg" alt="Card image cap">
                 <div class="card-body">
                     <hr class="solid">
                     
@@ -182,7 +182,7 @@ include_once("./config/config.php");
                     <?php else: ?>
                         <a href="./php/iniciar_sesion.php" class="btn btn-sm comprar">Comprar</a>
                         <?php endif ?>
-                    </div>
+                    </div> 
                     <?php
             endwhile;
             $n_relleno=(((int)mysqli_num_rows($result))-$vacios)%5;

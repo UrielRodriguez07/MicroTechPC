@@ -41,7 +41,7 @@ $arreglo_para_comprar=array();
     <?php include "head_html.php" ?>
     <title>Carrito de compras</title>
     <!-- icono -->
-    <link rel="shortcut icon" href="../img/logo.jpg">
+    <link rel="shortcut icon" href="../img/logo.png">
     <!-- normalize -->
     <link rel="preload" href="../css/normalize.css" as="style">
     <link rel="stylesheet" href="../css/normalize.css">
@@ -67,7 +67,7 @@ $arreglo_para_comprar=array();
                         <span class="icon-bar"></span>
                     </button>
                     <!-- marca -->
-                    <a class="navbar-brand" href="../index.php">Geek Store F</a>
+                    <a class="navbar-brand" href="../index.php">MicroTechPC</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -84,7 +84,7 @@ $arreglo_para_comprar=array();
                         <?php if ($_SESSION['sesion_personal']['super']==1): ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                                aria-haspopup="true" aria-expanded="false">Modo Administrador <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../php/consultar_historial.php"><span
                                             class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
