@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2022 a las 06:25:46
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 23-10-2024 a las 01:59:26
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `carrito` (
   `id_producto` int(11) NOT NULL,
   `id_carrito` int(11) NOT NULL,
   `cantidad_seleccionada` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -46,20 +46,7 @@ CREATE TABLE `historial_compras` (
   `id_producto` int(11) DEFAULT NULL,
   `cantidad_comprada` int(11) DEFAULT NULL,
   `fecha_compra` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `historial_compras`
---
-
-INSERT INTO `historial_compras` (`id_historial`, `id_usuario`, `id_producto`, `cantidad_comprada`, `fecha_compra`) VALUES
-(57, 1, 1, 1, '2022-05-17'),
-(58, 1, 2, 3, '2022-05-17'),
-(59, 1, 3, 2, '2022-05-17'),
-(60, 1, 4, 1, '2022-05-17'),
-(61, 1, 5, 25, '2022-05-17'),
-(62, 3, 1, 1, '2022-05-17'),
-(63, 3, 2, 1, '2022-05-17');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -76,43 +63,49 @@ CREATE TABLE `producto` (
   `fabricante` varchar(100) DEFAULT NULL,
   `origen` varchar(100) DEFAULT 'China',
   `categoria` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre_producto`, `descripcion_producto`, `cantidad_disponible`, `precio_producto`, `fabricante`, `origen`, `categoria`) VALUES
-(1, 'Monitor gamer curvo Samsung C32R500', 'Este monitor de 32 pulgadas te dará comodidad para estudiar, trabajar o ver una película, su resolución de 1920 x 1080 te permitirá disfrutar de momentos únicos gracias a una imagen de alta fidelidad.', 4, 5999, 'Samsung', 'China', 'monitores'),
-(2, 'Teclado inalámbrico Logitech K400 Plus QWERTY español', 'Color negro, con su touchpad incorporado puedes controlar el cursor de manera sencilla y mantener una cómoda navegación en cualquier interfaz.', 3, 800, 'Logitech', 'China', 'teclados'),
-(3, 'Mouse de juego Glorious Model O', 'El mouse de juego te ofrecerá la posibilidad de marcar la diferencia y sacar ventajas en tus partidas. Su conectividad y sensor suave ayudará a que te desplaces rápido por la pantalla.', 34, 2300, 'Glorious', 'China', 'accesorios'),
-(4, 'Asus Zenbook Pro Duo 15 Ux582', 'ASUS - ZenBook Pro Duo 15 UX582 Laptop con pantalla táctil de 15.6 - Intel Core i9 - Memoria de 32 GB - NVIDIA GeForce RTX 3060 - SSD de 1 TB - Celestial Blue', 1, 94000, 'Asus', 'China', 'ordenadores\r\n'),
-(5, 'Audífonos gamer HyperX Cloud Alpha S blue', '¡Experimenta la adrenalina de sumergirte en la escena de otra manera! Tener auriculares específicos para jugar cambia completamente tu experiencia en cada partida.', 15, 2046, 'HP', 'China', 'accesorios'),
-(6, 'Xtreme Pc Geforce Rtx 3060 Ryzen 5 360O 16gb Ssd 480gb 2tb', 'Gráficos NVIDIA GeForce RTX 3060 12GB GDDR6, Memory Bus 192-bit, Engine ClockBoost 1882 MHz, Memory Clock 14 Gbps lo que proporciona un rendimiento rápido, sin interrupciones y fluido en los juegos que te apasiona.', 4, 27026, 'Xtreme PC gamer', 'Mexico', 'ordenadores'),
-(7, 'Silla de escritorio Seats And Stools giratoria reclinable reposa pies ergonómica', 'Con esta silla Seats And Stools, tendrás la comodidad y el bienestar que necesitas a lo largo de tu jornada. Además, puedes ubicarla en cualquier parte de tu casa u oficina ya que su diseño se adapta a múltiples entornos.', 8, 3521, 'Seats And Stools', 'China', 'accesorios'),
-(8, 'Micrófono Maono AU-PM421 condensador cardioide', 'Con este producto lograrás que la reproducción obtenida sea lo más parecida a la original. Excelente para grabar voces debido a su sensibilidad y amplio rango de frecuencia.', 5, 2015, 'Maono', 'China', 'accesorios'),
-(9, 'Microsoft Xbox Series X 1TB', 'Con tu consola Xbox Series tendrás entretenimiento asegurado todos los días. Su tecnología fue creada para poner nuevos retos tanto a jugadores principiantes como expertos.', 12, 20845, 'Microsoft', 'China', 'gamer'),
-(10, 'Sony PlayStation 5 825GB', 'Con tu consola PlayStation 5 tendrás entretenimiento asegurado todos los días. Su tecnología fue creada para poner nuevos retos tanto a jugadores principiantes como expertos.', 48, 20895, 'Sony', 'China', 'gamer'),
-(11, 'Nintendo Switch 32GB', 'Con tu consola Switch tendrás entretenimiento asegurado todos los días. Su tecnología fue creada para poner nuevos retos tanto a jugadores principiantes como expertos.', 14, 7000, 'Nintendo', 'China', 'gamer'),
-(12, 'Audífonos in-ear inalámbricos Samsung Galaxy Buds Live mystic black', 'Cuenta con tecnología True Wireless, La batería dura 6 h, Modo manos libres incluido, Asistente de voz integrado: Bixby, Con cancelación de ruido.', 54, 1920, 'Samsung', 'China', 'accesorios'),
-(13, 'Rog Zephyrus 14 Amd Ryzen 9-5900hs 16gb Nvidia Rtx 3060 1tb', 'ASUS - ROG Zephyrus 14 Gaming Laptop - AMD Ryzen 9 - 16GB Memory - NVIDIA GeForce RTX 3060 - 1TB SSD - Moonlight White - Moonlight White, Modelo:GA401QM-211.ZG14', 62, 45500, 'Asus', 'China', 'ordenadores'),
-(14, 'Audífonos gamer Redragon Zeus black', 'Con micrófono incorporado.\r\nTipo de conector: Jack 3.5 mm/USB.\r\nSonido superior y sin límites.\r\nCómodos y prácticos.', 25, 1327, 'Redragon', 'China', 'accesorios'),
-(15, 'Mouse de juego Game Factor MOG601 rosa', 'Utiliza cable. posee rueda de desplazamiento. cuenta con 7 botones para un mayor control.\r\nCon luces para mejorar la experiencia de uso.\r\nCon sensor óptico.\r\nResolución de 32000dpi.', 24, 631, 'Game Factor', 'China', 'accesorios'),
-(16, 'Monitor gamer curvo Huawei Sound Edition MateView GT LCD 34 negro', 'Pantalla LCD de 34 . Curvo. Tiene una resolución de 3440px-1440px. Relación de aspecto de 21:9. Panel VA. Su brillo es de 350cd/m.', 15, 12499, 'Huawei', 'China', 'monitores'),
-(17, 'T50 Full - Silla Ergonómica - Oficina - Alta Tecnología', 'La hermosa forma del respaldo diseñado con la inspiración de la estructura proporcionada del ser humano, contribuye a una mayor comodidad ergonómica y estabilidad en su espalda.', 9, 8500, 'T50', 'Corea', 'accesorios'),
-(18, 'Escritorio Para Videojuegos Gamer Con Librero Para Home', 'ESCRITORIO GAMER MODERNO IDEAL PARA TU HOGAR FACIL DE ARMAR INCLUYE ENVIO GRATUITO A TODA EL PAIS MEXICO, (APLICA RESTRICCIONES)', 47, 2500, 'GNN', 'Chiapas', 'accesorios'),
-(19, 'The Walking Dead Collection Xbox One Físico Sellado 5 Juegos', 'Videojuego THE WALKING DEAD COLLECTION Para Xbox One Totalmente nuevo (Sellado) ¡Listo para envío!', 10, 2000, 'Telltale Games', 'China', 'gamer'),
-(20, 'Halo Infinite Físico', 'CONVIÉRTETE. La legendaria saga Halo regresa con la campaña de Master Chief más amplia hasta la fecha y una experiencia multijugador gratuita revolucionaria.', 15, 1500, 'Xbox One', 'China', 'gamer'),
-(21, 'Control joystick ACCO Brands PowerA Enhanced Wired Controller for Xbox One black', 'Compatible con: Xbox One y Televisores. Incluye un control. Con sistema de vibración incorporado. Cuenta con 1 cable usb de 3 m y 1 manual.', 45, 700, 'Slang', 'China', 'gamer'),
-(22, 'Xtreme Pc Amd Radeon Vega Ryzen 5 4650g 16gb Ssd 3tb Wifi', 'Gráficos AMD Radeon 7 Renoir con frecuencia de 1900MHz y 7 núcleos lo que proporciona un rendimiento rápido, sin interrupciones y fluido en los juegos que te apasionan, más potente de lo que crees.\r\n', 36, 18542, 'Xtreme Pc Gamer', 'China', 'ordenadores'),
-(23, 'Mesa Gamer Balam Rush Olympus Rgb, 2*usb, portavasos, soportes', 'Estilo: Forma en Z Accesorios: Soporte para control, soporte para headset y portavasos Puertos USB: 2 * 2.0 (carga) Iluminación: RGB Dimensiones: 100 * 64 * 77 cm', 21, 5200, 'Balam Rush', 'China', 'gamer'),
-(24, 'Hp Pavilion 17 Gamer Laptop Gtx 1660ti 16gb Ram 1tb', 'La laptop HP Pavilion Gaming 15-dk0005la es una solución tanto para trabajar y estudiar como para entretenerte.', 100, 34999, 'HP', 'China', 'ordenadores'),
-(25, 'Tarjeta de video Nvidia GeForce\r\nRTX 30 Series RTX 3090 24GB', 'Interfaz PCI-Express 4.0.\r\nBus de memoria: 384bit.\r\nCantidad de núcleos: 10496.\r\nFrecuencia boost del núcleo de 1.7GHz y base de 1.4GHz.\r\nResolución máxima: 7680x4320.\r\nCompatible con directX y openGL.', 10, 63999, 'Nvidia', 'China', 'gamer'),
-(26, 'Procesador gamer Intel Core i9- 10850K BX8070110850K de 10 núcleos y 5.2GHZ de frecuencia con gráfic', 'Ejecuta con rapidez y eficiencia cualquier tipo de programa sin afectar el funcionamiento total del dispositivo. Memoria caché de 20 MB, rápida y volátil.\r\nProcesador gráfico Intel UHD Graphics 630. Soporta memoria RAM DDR4. Su potencia es de 125 W.', 26, 11046, 'Intel', 'China', 'gamer'),
-(27, 'Disco duro externo Seagate\r\nExpansion STEB1200040O 12TB\r\nnegro', 'Útil para guardar programas y documentos con su capacidad de 12 TB. Es compatible con Windows. Disco externo de escritorio. Interfaz de conexión: USB 3.0. Apto para PC y Laptop.', 14, 8389, 'Seagate', 'China', 'accesorios'),
-(28, 'Monitor Gamer 23.8 Pulgadas 165hz 1080p Led Slim Curvo Xzeal', 'El monitor LED de XZEAL proporciona imágenes claras, nítidas y colores más vivos para una experiencia visual extraordinaria, además de ser una de las pocas líneas ultra slim del mercado.', 25, 4999, 'Xzeal', 'China', 'monitores'),
-(29, 'Xtreme Pc Amd Radeon Renoir Ryzen 5 4650g 8gb Ssd 240gb Wifi', 'Gráficos AMD Radeon 7 Renoir con frecuencia de 1900MHz y 7 núcleos lo que proporciona un rendimiento rápido, sin interrupciones y fluido en los juegos que te apasionan, más potente de lo que crees.\r\n', 12, 8200, 'xtreme pc gamer', 'China', 'ordenadores'),
-(30, 'Control joystick inalámbrico Sony PlayStation DualSense CFI-ZCT1 cosmic red', 'Cuenta con Bluetooth. Pantalla táctil. Mando inalámbrico. Compatible con: PlayStation 5. Incluye un control.', 8, 1549, 'Sony', 'China', 'gamer');
+(1, 'Dell Inspiron 15 3000', 'Laptop ligera y asequible para tareas académicas. Equipado con un procesador Intel, ideal para navegación y aplicaciones de oficina.', 15, 4900, 'Dell', 'China', 'Estudiantes'),
+(2, 'Dell Vostro 15 3000', 'Ideal para estudiantes, ofrece un equilibrio entre rendimiento y precio. Con pantalla HD y teclado cómodo para escribir.', 12, 5600, 'Dell', 'China', 'Estudiantes'),
+(3, 'Dell Chromebook 3100', 'Perfecta para tareas en línea, con sistema operativo Chrome OS y batería de larga duración, ideal para estudiantes.', 10, 3500, 'Dell', 'China', 'Estudiantes'),
+(4, 'Lenovo IdeaPad 330', 'Versátil y fácil de usar, cuenta con un diseño moderno y un rendimiento sólido para trabajos escolares y entretenimiento.', 10, 5600, 'Lenovo', 'China', 'Estudiantes'),
+(5, 'Lenovo IdeaPad 530S', 'Diseño delgado y potente, ideal para estudiantes que necesitan un dispositivo ligero y eficiente.', 8, 6500, 'Lenovo', 'China', 'Estudiantes'),
+(6, 'Lenovo Chromebook C330', 'Compacta y eficiente, con gran conectividad y fácil de manejar, perfecta para el uso diario de estudiantes.', 12, 3200, 'Lenovo', 'China', 'Estudiantes'),
+(7, 'HP Pavilion 15', 'Ideal para tareas escolares y entretenimiento, cuenta con un rendimiento sólido y buena duración de batería.', 10, 5600, 'HP', 'México', 'Estudiantes'),
+(8, 'HP Stream 14', 'Ligera y portátil, perfecta para estudiantes que necesitan un dispositivo para tareas diarias y navegación web.', 12, 4000, 'HP', 'México', 'Estudiantes'),
+(9, 'HP Chromebook 14', 'Eficiente y fácil de usar, con sistema Chrome OS, ideal para tareas en línea y productividad.', 10, 3200, 'HP', 'México', 'Estudiantes'),
+(10, 'Dell G3 15 Gaming', 'Laptop potente para gaming en movimiento, cuenta con gráficos dedicados y rendimiento optimizado para juegos.', 8, 12800, 'Dell', 'China', 'Gamer'),
+(11, 'Dell Alienware m15', 'Diseño premium y rendimiento excepcional, ideal para gamers exigentes que buscan calidad gráfica.', 6, 21000, 'Dell', 'China', 'Gamer'),
+(12, 'Lenovo Legion 5', 'Rendimiento excepcional para los gamers, con sistema de refrigeración avanzada y teclado retroiluminado.', 6, 14000, 'Lenovo', 'China', 'Gamer'),
+(13, 'HP Omen 15 Gaming', 'Potente y elegante, proporciona experiencias de juego envolventes con un diseño atractivo.', 7, 17500, 'HP', 'México', 'Gamer'),
+(14, 'Dell Latitude 5490', 'Laptop confiable y segura para entornos de trabajo, equipada con características de seguridad empresarial.', 10, 9600, 'Dell', 'China', 'Oficina'),
+(15, 'Dell Latitude 5500', 'Ideal para profesionales en movimiento, ofrece una combinación de rendimiento y durabilidad.', 8, 10400, 'Dell', 'China', 'Oficina'),
+(16, 'Dell Latitude 5510', 'Eficiente y segura para el trabajo diario, cuenta con varias opciones de conectividad.', 9, 11200, 'Dell', 'China', 'Oficina'),
+(17, 'Dell XPS 13 (9370)', 'Elegante y potente, ideal para profesionales que necesitan un diseño compacto y alto rendimiento.', 5, 14400, 'Dell', 'China', 'Oficina'),
+(18, 'Dell Precision 5530', 'Laptop de trabajo para tareas exigentes, cuenta con gráficos dedicados y pantalla 4K opcional.', 4, 20000, 'Dell', 'China', 'Oficina'),
+(19, 'Lenovo ThinkPad T490', 'Excelente rendimiento y durabilidad, ideal para profesionales que requieren una laptop confiable.', 5, 8000, 'Lenovo', 'China', 'Oficina'),
+(20, 'Lenovo ThinkPad T580', 'Laptop robusta y eficiente para entornos de trabajo, con teclado cómodo y gran duración de batería.', 6, 9600, 'Lenovo', 'China', 'Oficina'),
+(21, 'Lenovo ThinkPad X1 Carbon (6th Gen)', 'Diseño ligero y alto rendimiento para ejecutivos, con excelente teclado y pantalla.', 4, 16000, 'Lenovo', 'China', 'Oficina'),
+(22, 'Lenovo ThinkPad L480', 'Gran capacidad de conectividad y rendimiento, ideal para pequeñas y medianas empresas.', 7, 7600, 'Lenovo', 'China', 'Oficina'),
+(23, 'Lenovo ThinkBook 15', 'Diseño moderno y profesional, adecuado para entornos de trabajo con gran rendimiento.', 5, 8800, 'Lenovo', 'China', 'Oficina'),
+(24, 'HP EliteBook 840 G5', 'Diseño premium y características avanzadas, ideal para ejecutivos y profesionales de negocios.', 4, 11200, 'HP', 'México', 'Oficina'),
+(25, 'HP EliteBook 850 G5', 'Laptop de alto rendimiento para profesionales, con seguridad mejorada y duración de batería prolongada.', 4, 12800, 'HP', 'México', 'Oficina'),
+(26, 'HP ProBook 450 G5', 'Ofrece un rendimiento sólido y diseño atractivo, ideal para negocios y uso diario.', 6, 8000, 'HP', 'México', 'Oficina'),
+(27, 'HP ProBook 640 G4', 'Combinación de rendimiento y características de seguridad para el uso en oficina.', 5, 8800, 'HP', 'México', 'Oficina'),
+(28, 'HP Spectre x360 (2019)', 'Convertible y elegante, ideal para presentaciones y trabajos creativos.', 4, 14400, 'HP', 'México', 'Oficina'),
+(29, 'HP Envy 13', 'Rendimiento excepcional en un diseño compacto, perfecto para profesionales que viajan.', 5, 10400, 'HP', 'México', 'Oficina'),
+(30, 'HP 255 G7', 'Laptop económica pero confiable para tareas básicas en oficina, con buen rendimiento.', 10, 4600, 'HP', 'México', 'Oficina'),
+(31, 'HP Elite x2 1012', '2 en 1 ideal para movilidad, combina tablet y laptop para mayor versatilidad.', 3, 7700, 'HP', 'México', 'Oficina'),
+(32, 'Lenovo Yoga 730', 'Laptop convertible con diseño elegante y rendimiento potente, ideal para presentaciones y trabajo creativo.', 4, 12000, 'Lenovo', 'China', 'Oficina'),
+(33, 'Lenovo Flex 14', 'Convertible y versátil, ideal para estudiantes y profesionales que requieren flexibilidad.', 5, 7200, 'Lenovo', 'China', 'Estudiantes'),
+(34, 'Lenovo ThinkPad E490', 'Rendimiento sólido y diseño clásico, ideal para pequeñas y medianas empresas.', 6, 7200, 'Lenovo', 'China', 'Oficina'),
+(35, 'Dell Inspiron 15 5000', 'Laptop de uso general con buena potencia y rendimiento, ideal para tareas diarias.', 10, 5600, 'Dell', 'China', 'Estudiantes'),
+(36, 'Dell XPS 15 (9570)', 'Potente laptop para profesionales y creativos, con gráficos dedicados y pantalla 4K opcional.', 3, 17600, 'Dell', 'China', 'Oficina');
 
 -- --------------------------------------------------------
 
@@ -129,14 +122,14 @@ CREATE TABLE `usuario` (
   `numero_tarjeta` varchar(100) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `super_usuario` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `fecha_nacimiento`, `correo`, `contrasena`, `numero_tarjeta`, `direccion`, `super_usuario`) VALUES
-(1, 'franciscousuario', '2001-06-04', 'francgutierrezlopez@gmail.com', '12345', '1234567890123456', 'universidad Anahuac facultad de ingeniería', 0),
+(1, '173572', '2001-06-04', '173572@upslp.edu.mx', '173572', '1234567890123456', 'Universidad Politécnica de San Luis Potosí', 1),
 (3, 'franciscodios', '2001-06-04', 'francgutierrezlopez@gmail.com', '12345', '1111111111111111', 'uni anahuac', 1),
 (5, 'franciscootrousuario', '2001-06-04', 'francogl@gmail.com', '12345', '2222222222222222', 'uni anahuac facultad ingenieria 2', 0);
 
@@ -180,7 +173,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_compras`
