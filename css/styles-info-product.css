@@ -66,6 +66,14 @@ img {
     color: var(--negro);
 }
 
+.ocultar {
+    display: none;
+}
+.mostrar{
+    display: flex; /* Utiliza flexbox para alinear los selects */
+    /*gap: 10px; /* Espacio entre los selects */
+}
+
 @media (max-width: 500px) {
     .imagen span img {
         width: 100%;

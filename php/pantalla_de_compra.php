@@ -6,6 +6,8 @@ if (!isset($_SESSION['sesion_personal'])) {
 }
 $id_usuario=$_SESSION['sesion_personal']['id'];
 $vaciar_carrito=$_GET['v'];
+$id_s=$_GET["id_s"];
+$años=$_GET['años'];
 $arreglo=array(); // arreglo de productos con sus cantidad y id pe [0]=1, 2
 foreach ($_GET['datos'] as $value) {
     $subarreglo=explode(",",$value);
@@ -42,6 +44,8 @@ else:
             ));
         }
     }
+
+    //recorrer el arreglo para agregar los detalles del seguro por daños accidentales
     
     mysqli_close($con);
 endif;

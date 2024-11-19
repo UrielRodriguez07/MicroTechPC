@@ -32,6 +32,7 @@ else:
     // cerrar conexión
     mysqli_close($con);
 endif;
+
 ?>
 
 
@@ -53,6 +54,15 @@ endif;
     <link rel="stylesheet" href="../css/styles-info-product.css">
     <!-- JavaScript -->
     <script type="text/javascript" src="../js/comprar_agregarcarrito.js"></script>
+    <style>
+        .ocultar {
+        display: none;
+        }
+        .mostrar{
+            display: flex; /* Utiliza flexbox para alinear los selects */
+            gap: 10px; /* Espacio entre los selects */
+        }
+    </style>
 </head>
 
 <!-- barra de navegación -->
@@ -144,10 +154,91 @@ endif;
                     <?php endfor ?>
                 </select>
             </span>
+
+            <div>         
+            <lavel id="garantia">
+                <input type="checkbox" name="miCheckbox" id="miCheckbox"> Agregar seguro de daños
+            </lavel>
+            </div>
+            <div id="titulos_seleccionar" class="ocultar">
+                <span><b>tipos de seguro</b></span>
+                <span><b>tiempo de cobertura (años)</b></span>
+            </div>           
+            <div id="seguros" class="ocultar">   
+                <select class="form-control" name="tipo_seguro" id="tipo_seguro">
+                    <option value="">---Selecciona tipo seguro---</option>
+                    <?php
+                    $con = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
+                    $sql = 'SELECT * FROM seguro_daños';
+                    $query=mysqli_query($con,$sql);
+                    while($row = mysqli_fetch_array($query)){
+                        $id_seguro=$row['id_seguro'];
+                        $detalle=$row['descripcion'];
+                        $costo_año=$row['costo_año'];
+                    ?>
+                        <option value="<?php echo $id_seguro?>"><?php echo $detalle?> costo por año: $<?php echo number_format(floatval($costo_año))?>MXN</option>
+                    <?php
+                    }
+                    mysqli_close($con);
+                    ?>
+                </select>
+                <select class="form-control" name="tiempo_seguro" id="tiempo_seguro">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                </select>
+            </div>
+            <script>
+                const checkbox = document.getElementById('miCheckbox');
+                const seccion = document.getElementById('seguros');
+                const seccion2 = document.getElementById('titulos_seleccionar');
+                //let aux=0;
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        seccion.classList.remove('ocultar');
+                        seccion.classList.add('mostrar');
+                        seccion2.classList.remove('ocultar');
+                        seccion2.classList.add('mostrar');
+                    } else {
+
+                        seccion.classList.add('ocultar');
+                        seccion.classList.remove('mostrar');
+                        seccion2.classList.add('ocultar');
+                        seccion2.classList.remove('mostrar');
+
+                    }
+                });
+
+                function comprobar(id_del_producto,aux){
+                    if (checkbox.checked) {
+                        const tipo = document.querySelector('#tipo_seguro');
+                        const tiempo = document.querySelector('#tiempo_seguro');
+                        const select = document.getElementById('tipo_seguro');
+
+                        const valorSeleccionado = parseInt(select.value); // Convertir a entero
+                        let id_s = valorSeleccionado;
+                        const valorSeleccionado2 = parseInt(select.value); // Convertir a entero
+                        let años_s = valorSeleccionado2;
+                        comprobarTipoCompra(aux,id_del_producto,id_s,años_s);
+                    }else{
+                        comprobarTipoCompra(aux,id_del_producto,4,null);
+                    }
+                }
+
+                function comprobarTipoCompra(aux,id_del_producto,id_s,años_s){
+                    if(aux){
+                        agregarAlCarrito(id_del_producto,id_s,años_s);
+                    }else{
+                        enviarAPantallaDeCompraUno(id_del_producto,id_s,años_s);
+                    }
+                }
+            </script>
+
+
             <span>
-                <input type="button" onclick="enviarAPantallaDeCompraUno(id_del_producto)"
+                <input type="button" onclick="comprobar(id_del_producto,false)"
                     class="btn btn-default comprar" value="Comprar">
-                <input type="button" onclick="agregarAlCarrito(id_del_producto)" class="btn btn-default comprar"
+                <input type="button" onclick="comprobar(id_del_producto,true)" class="btn btn-default comprar"
                     value="Agregar al carrito">
             </span>
         </div>

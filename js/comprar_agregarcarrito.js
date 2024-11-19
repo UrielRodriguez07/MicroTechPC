@@ -1,3 +1,8 @@
+/*variables globales*/
+/*
+var id_s=0;
+var años_s=0;*/
+/*funciones*/
 function comprar(arreglo,v){ // arreglo de [arreglos de (cantidad, id) en string]
     var url="";
     url+="../php/comprar.php?";
@@ -14,23 +19,31 @@ function comprar(arreglo,v){ // arreglo de [arreglos de (cantidad, id) en string
     // alert(url);
     window.location.replace(url);
 }
-function agregarAlCarrito(id){
+function agregarAlCarrito(id,id_s,año_s){
     var cantidad_seleccionada=Number(document.getElementById("cantidad_seleccionada").value);
     var url="";
     url+="../php/agregar_al_carrito.php?cantidad=";
     url+=cantidad_seleccionada;
     url+="\&id_producto=";
     url+=id;
+    url+="\&id_s=";
+    url+=id_s;
+    url+="\&años=";
+    url+=año_s;
     window.location.replace(url);
 }
-function enviarAPantallaDeCompraUno(id){
+function enviarAPantallaDeCompraUno(id,id_s,año_s){
     var cantidad_seleccionada=Number(document.getElementById("cantidad_seleccionada").value);
     var url="";
     url+="../php/pantalla_de_compra.php?datos[0]=";
     url+=cantidad_seleccionada;
     url+=",";
     url+=id;
-    url+="&v=0";
+    url+="\&v=0";
+    url+="\&id_s=";
+    url+=id_s;
+    url+="\&años=";
+    url+=año_s;
     window.location.replace(url);
 }
 function enviarAPantallaDeCompraMuchos(arreglo_local){
@@ -48,3 +61,4 @@ function enviarAPantallaDeCompraMuchos(arreglo_local){
     // alert(url);
     window.location.replace(url);
 }
+

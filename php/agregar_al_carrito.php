@@ -7,6 +7,8 @@ if (!isset($_SESSION['sesion_personal'])) {
 print_r($_GET);
 $id_producto=$_GET["id_producto"];
 $cantidad_seleccionada=$_GET["cantidad"];
+$id_s=$_GET["id_s"];
+$años=$_GET['años'];
 $id_usuario=$_SESSION['sesion_personal']['id'];
 
 // hacer insersión
@@ -16,7 +18,7 @@ $con = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
 if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:
-    $result = mysqli_query($con, "INSERT INTO carrito (id_producto,id_usuario,cantidad_seleccionada) VALUES ($id_producto,$id_usuario,$cantidad_seleccionada);");
+    $result = mysqli_query($con, "INSERT INTO carrito (id_producto,id_usuario,cantidad_seleccionada,id_seguro,años) VALUES ($id_producto,$id_usuario,$cantidad_seleccionada,$id_s,$años);");
     mysqli_close($con);
     header('Location: ./carrito.php');
 endif;

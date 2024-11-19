@@ -14,7 +14,7 @@ if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:
     $arreglo_de_productos=[];
-    $result = mysqli_query($con, "SELECT p.id_producto,p.nombre_producto,p.precio_producto,p.cantidad_disponible,c.cantidad_seleccionada,c.id_carrito FROM carrito as c INNER JOIN producto as p ON c.id_producto = p.id_producto WHERE c.id_usuario=".$_SESSION['sesion_personal']['id'].";");
+    $result = mysqli_query($con, "SELECT * FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto INNER JOIN seguro_daños ON carrito.id_seguro = seguro_daños.id_seguro WHERE carrito.id_usuario=".$_SESSION['sesion_personal']['id'].";");
     $n_productos=mysqli_num_rows($result);
     while ($row = mysqli_fetch_array($result)):
         array_push($arreglo_de_productos, array(
@@ -24,6 +24,9 @@ else:
             "precio"=>$row['precio_producto'],
             "disponibles"=>$row['cantidad_disponible'],
             "cantidad"=>$row['cantidad_seleccionada'],
+            "descripcion"=>$row['descripcion'],
+            "años"=>$row['años'],
+            "costo_año"=>$row['costo_año'],
         ));
     endwhile;
 
@@ -119,6 +122,7 @@ $arreglo_para_comprar=array();
                 <th>Nombre</th>
                 <th>Disponibles</th>
                 <th>Cantidad seleccionada</th>
+                <th>Detalles seguro seleccionado</th>
                 <th>Precio</th>
                 <th>Total individual</th>
             </tr>
@@ -154,17 +158,29 @@ $arreglo_para_comprar=array();
                         </a>
                     </div>
                 </td>
+
+                
+                <td>
+                    <span class="texto-informativo"><?= $producto["descripcion"] ?></span>
+                    <span class="texto-informativo"><b>Durante:</b> <?= $producto["años"] ?> año/s</span>
+                    <span class="texto-informativo"><b>precio:</b> $<?= number_format(floatval($producto["costo_año"])) ?> por año y por equipo</span>
+                </td>
+
+
                 <td>
                     <span
-                        class="texto-informativo">$<?= number_format(floatval($producto["precio"]), 2, '.', ',') ?></span>
+                        class="texto-informativo">$<?=number_format(floatval(floatval($producto["precio"])), 2, '.', ',')  ?></span>
                 </td>
                 <td>
                     <span class="texto-informativo">
-                        $<?= number_format(floatval(floatval($producto["precio"])*((int) $producto["cantidad"])), 2, '.', ',') ?>
+                        $<?= number_format(floatval(floatval($producto["precio"])*((int) $producto["cantidad"])+(+(floatval(floatval($producto["costo_año"]))*(Int)($producto["años"])*((int) $producto["cantidad"])))), 2, '.', ',') ?>
                     </span>
                 </td>
+                
             </tr>
-            <?php $suma+=floatval(floatval($producto["precio"])*((int) $producto["cantidad"])); ?>
+            <?php $suma+=floatval(floatval($producto["precio"])*((int) $producto["cantidad"])); 
+                $suma+=(floatval(floatval($producto["costo_año"]))*(Int)($producto["años"])*((int) $producto["cantidad"]));
+            ?>
             <?php endforeach; ?>
             <tr>
                 <td></td>
