@@ -122,7 +122,7 @@ endif;
             </tr>
             <?php foreach ($historial as $producto): ?>
             <tr>
-                <td><img src="../img/productos/<?= $producto["id_producto"]; ?>.png"
+                <td><img src="../img/productos/<?= $producto["id_producto"]; ?>.jpeg"
                         alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen"></td>
                 <td><?=$producto['nombre_producto']; ?></td>
                 <td><?=$producto['fecha'];?></td>

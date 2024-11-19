@@ -129,7 +129,7 @@ $arreglo_para_comprar=array();
             ?>
             <tr>
                 <td>
-                    <img src="../img/productos/<?= $producto["id"] ?>.png" alt="producto <?= $producto["nombre"] ?>"
+                    <img src="../img/productos/<?= $producto["id"] ?>.jpeg" alt="producto <?= $producto["nombre"] ?>"
                         class="imagen">
                 </td>
                 <td>

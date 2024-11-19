@@ -1,0 +1,901 @@
+/*------------------------------- Importacion de fuente a usar en las paginas ------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+
+
+/*-------------------------------------------------- Diseño base para todas las paginas ---------------------------------------------------*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Racing Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: aliceblue;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/*-------------------------------------------------------- Nav Bar ---------------------------------------------------------------------------*/
+
+header {
+    width: 100%;
+    height: 100px;
+    background-color: #373737;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px 0 10px;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #aa96da;
+}
+
+.bars {
+    display: none;
+}
+
+.form-search {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    padding-left: 0;
+}
+
+.form-search a {
+    width: 40px;
+    background-color: #aa96da;
+    margin: 0 15px 5px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 60%;
+    color: aliceblue;
+    font-size: 25px;
+}
+
+.form-control {
+    width: 420px;
+    font-size: 18px;
+}
+
+.search-seo {
+    margin-right: 20px;
+}
+
+/* Se decidio usar un icono para el boton de busqueda
+.btn-search {
+    margin-left: 15px;
+    background-color: #aa96da;
+    color: aliceblue;
+    border: 2px;
+    font-size: 18px;
+}
+*/
+
+.nav-bar ul {
+    display: flex;
+}
+
+.nav-bar ul li a {
+    display: block;
+    color: aliceblue;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
+.nav-bar ul li a:hover {
+    color: #373737;
+    background-color: #aa96da;
+    text-decoration: none;
+}
+
+.nav-bar ul li a.active {
+    color: #373737;
+    background-color: #aa96da;
+}
+
+ul.dropdown-list-admin {
+    width: 100%;
+    background-color: #373737;
+    ;
+    position: absolute;
+    z-index: 999;
+    display: none;
+    width: 200px;
+}
+
+ul.dropdown-list-admin li {
+    display: block;
+}
+
+li:hover ul.dropdown-list-admin {
+    display: block;
+}
+
+/* Diseño responsivo para Nav-Bar */
+@media(max-width:991px) {
+    header {
+        padding: 0px 30px;
+    }
+
+    .bars {
+        display: block;
+        cursor: pointer;
+    }
+
+    .bars .line {
+        width: 30px;
+        height: 3px;
+        background-color: #aa96da;
+        margin: 6px 0;
+    }
+
+    .nav-bar {
+        height: 0px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background-color: #504f4f;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+
+    .nav-bar.active {
+        height: 650px;
+        display: flex;
+    }
+
+    .nav-bar ul {
+        display: block;
+        width: fit-content;
+        margin: 80px auto 0 auto;
+        text-align: center;
+        transition: 0.5s;
+        opacity: 0;
+    }
+
+    .nav-bar.active ul {
+        opacity: 1;
+    }
+
+    .nav-bar ul li a {
+        margin-bottom: 20px;
+    }
+
+    ul.dropdown-list-admin {
+        background-color: #373737;
+        ;
+        position: relative;
+        z-index: 999;
+        display: none;
+        width: 200px;
+        margin-top: 0;
+    }
+}
+
+/*--------------------------------------------------- index.php - lista de productos --------------------------------------------------------*/
+/* Seccion quienes-somos */
+.info-MT {
+    padding: 20px 150px 20px 150px;
+    font-size: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}
+
+.info-MT h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+}
+
+.info-text p {
+    font-size: 22px;
+}
+
+.info-logo {
+    width: 450px;
+    height: 450px;
+    border-radius: 55%;
+    object-fit: cover;
+    box-shadow: 30px 8px 4px rgba(17, 5, 5, 0.423);
+    padding-left: 15px;
+}
+
+/* Diseño responsivo quienes-somos */
+@media(max-width:991px) {
+    .info-MT {
+        padding: 30px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* Seccion catalogo-equipos */
+.card {
+    width: 18rem;
+    border: solid 2px;
+    padding: 1%;
+    border-radius: .5em;
+    margin-bottom: 2.5rem;
+}
+
+.card-img-top {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+hr.solid {
+    border-top: 1px solid #bbb;
+    margin: 0px 0 5px 0;
+}
+
+.comprar {
+    background-color: #aa96da;
+    color: aliceblue;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.comprar:hover {
+    background-color: #373737;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.principal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 70vw;
+    margin: 0 auto;
+    align-content: flex-start;
+    column-gap: 1rem;
+    font-size: 18px;
+}
+
+#altura_caja {
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* Diseño responsivo catalogo-equipos */
+@media(max-width: 991px) {
+    .principal {
+        width: 95%;
+        justify-content: space-around;
+        column-gap: 0.5rem;
+    }
+
+    .carrusel h3,
+    .carrusel p {
+        font-size: smaller;
+    }
+}
+
+
+/*--------------------------------------------------- perfil.php - lista de productos --------------------------------------------------------*/
+
+body.container-perfil {
+    background-image: url("../img/fondo-perfil.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-info-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: transparent;
+}
+
+.carta_perfi img {
+    width: 100%;
+}
+
+.carta_perfi {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    background-color:transparent;
+    width: 660px;
+    position: relative;
+
+}
+
+.carta_perfi .carta_header {
+    border-radius: 20%;
+    display: flex;
+    width: 100%;
+    height: 240px;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    position: absolute;
+    background-color:#373737; /*Checar si se transparenta o no*/
+    top: 0;
+    padding-bottom: 15px;
+    text-align: center;
+    color: #fff;
+    transition: all ease-in 350ms;
+    z-index: 1;
+    border-radius: .75rem;
+    line-height: .2;
+}
+
+.carta_perfi .carta_header .textos h3 {
+    font-size: 1.3em;
+    margin-bottom: 0;
+    font-size: 42px;
+    color: #aa96da;
+}
+
+.carta_perfi .carta_header .textos h4 {
+    font-size: .8em;
+    /*font-style: italic;*/
+    font-size: 36px;
+}
+
+.carta_perfi .carta_header .avatar {
+    display: block;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-color: #E1E8F0;
+    top: -100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .1);
+}
+
+.carta_perfi .carta_header button {
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: .7em;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .25);
+    position: absolute;
+    top: -15px;
+    left: calc(50% + 50px + 3rem);
+    background-color:#aa96da;
+    cursor: pointer;
+    transform: rotate(0);
+    transition: transform ease-in 350ms;
+    font-size: 28px;
+}
+
+.carta_perfi .carta_header button:hover {
+    background-color:#aa96da;
+}
+
+.carta_body {
+    background-color: transparent;
+}
+
+.carta_perfi .carta_body {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    padding-bottom: 40px;
+    transition: all ease-in 350ms;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, .1), 0 0 8px 1px rgba(0, 0, 0, .1);
+    border-radius: .75rem;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.carta_perfi .carta_body ul {
+    margin-bottom: 1.75rem;
+    list-style: none;
+}
+
+.carta_perfi .carta_body ul li {
+    margin-bottom: .5rem;
+}
+
+.carta_perfi .carta_body ul i {
+    margin-right: 1rem;
+    display: inline-block;
+    transform: scale(1.25);
+}
+
+/* De momento no se ocupara
+.carta_perfi .carta_body ul li:nth-child(1) i {
+    color: #668EE8;
+}
+
+.carta_perfi .carta_body ul li:nth-child(2) i {
+    color: #5BC7B1;
+}
+
+.carta_perfi .carta_body ul li:nth-child(3) i {
+    color: #FF5050;
+}
+
+.carta_perfi .carta_body .carta_pie {
+    text-align: center;
+}
+*/
+
+.carta_perfi .carta_body .carta_boton {
+    padding: 10px 25px;
+    border-radius: .25rem;
+    border: 0;
+    background-color: #1594A6;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carta_perfi .carta_body .carta_boton:active {
+    background-color: #188291;
+}
+
+.carta_perfi .carta_contenido {
+    transform: translateY(35rem);
+    transition: all ease-in 550ms;
+}
+
+.carta_perfi.animacion .carta_body {
+    height: 650px;
+    opacity: 1;
+    visibility: visible;
+    border-radius: 20%;
+    background-color: #aa96da;
+}
+
+.carta_perfi.animacion .carta_header {
+    top: 5rem;
+    border-radius: 60%;
+}
+
+.carta_perfi.animacion .carta_contenido {
+    transform: translateY(0);
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.carta_perfi.animacion .carta_header button {
+    transform: rotate(45deg);
+}
+
+.carta_pie {
+    align-items: center;
+    align-content: center;
+    display: flex;
+    padding-left: 180px;
+}
+
+.carta_pie .btn {
+    background-color:#373737;
+    color: aliceblue;
+    border: 2px;
+    font-size: 24px;
+}
+
+
+/*----------------------------------------------------- iniciar_sesion.php ----------------------------------------------------------------*/
+
+/*
+body.container-login {
+    background-image: url("../img/fondo-perfil.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	background-color:#373737;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+form.login-form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+    font-size: 20px;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.container {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 650px;
+    height: 700px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+	transform: translateX(100%);
+}
+
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.container.right-panel-active .overlay-container{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background:#aa96da;
+	background: -webkit-linear-gradient(to right, #aa96da, #373737);
+	background: linear-gradient(to right, #aa96da, #aa96da);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  	transform: translateX(50%);
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+	transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+	transform: translateX(0);
+}
+
+.overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+	transform: translateX(20%);
+}
+
+.social-container {
+	margin: 20px 0;
+}
+
+.social-container a {
+	border: 1px solid #DDDDDD;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------- footer para todas las paginas ----------------------------------------------------*/
+.footer {
+    padding: 30px 0 40px 0;
+    background-color: #373737;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-footer {
+    max-width: 1500px;
+    margin: 0;
+}
+
+.footer-link {
+    display: flex;
+}
+
+.link {
+    width: 300px;
+    color: #aa96da;
+    font-size: 18px;
+}
+
+.link h3 {
+    font-size: 23px;
+    color: #aa96da;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.link a {
+    font-size: 23px;
+    color: #aa96da;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.link a:hover {
+    color: aliceblue;
+}
+
+/* Iconos redes-sociales */
+.media-socials {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.media-socials a {
+    display: inline-block;
+    min-height: 40px;
+    width: 40px;
+    background-color: #aa96da;
+    margin: 0 15px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: aliceblue;
+    font-size: 25px;
+}
+
+.media-socials a:hover {
+    background-color: aliceblue;
+    color: #373737;
+}
+
+/* Formulario de dudas */
+.footer-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    background-color: transparent;
+    padding: 14px;
+    outline: none;
+    border: 2px solid #aa96da;
+    font-size: 23px;
+    margin-bottom: 15px;
+    color: #aa96da;
+}
+
+::placeholder {
+    color: #949292;
+}
+
+.btn {
+    background-color: #aa96da;
+    color: aliceblue;
+    border: 2px;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: aliceblue;
+    color: #373737;
+}
+
+/* Linea morada como separador de secciones */
+hr {
+    border: 2px solid #aa96da;
+}
+
+/* Texto al final del footer */
+.footer-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-text p {
+    font-size: 20px;
+    color: #aa96da;
+}
+
+/* Diseño responsivo footer */
+@media(max-width:991px) {
+    .footer {
+        padding: 30px;
+    }
+
+    .footer-link {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .media-socials {
+        justify-content: center;
+    }
+
+    .footer-text {
+        text-align: center;
+    }
+}

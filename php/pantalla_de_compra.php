@@ -95,7 +95,7 @@ endif;
                     <?php if ($_SESSION['sesion_personal']['super']==1): ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Modo dios 😎 <span class="caret"></span></a>
+                            aria-expanded="false">Modo Administrador <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
                                     Consultar historial</a></li>
@@ -141,7 +141,7 @@ endif;
             </p>
         </div>
         <div>
-            <img src="../img/productos/<?= $value['id_producto']?>.png" alt="<?= $value['nombre']?>">
+            <img src="../img/productos/<?= $value['id_producto']?>.jpeg" alt="<?= $value['nombre']?>">
         </div>
     </div>
     <br><br>

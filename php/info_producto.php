@@ -57,56 +57,74 @@ endif;
 
 <!-- barra de navegación -->
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- responsividad del header, marca -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- marca -->
-                <a class="navbar-brand" href="../index.php">MicroTechPC</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <!-- menú izquierdo-->
-                <ul class="nav navbar-nav">
-                    <li><a href="../index.php">Lista de productos</a></li>
-                    <li class="active">
-                        <a href="#">Información del producto</a>
-                    </li>
-                    <li><span class="navbar-text">Sesión iniciada como <a href="../php/perfil.php"
-                                class="navbar-link"><u><?=$_SESSION['sesion_personal']['nombre']?></u></a></span></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <?php if ($_SESSION['sesion_personal']['super']==1): ?>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Modo Administrador <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span>
-                                    Consultar historial</a></li>
-                            <li><a href="../php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span>
-                                    Modificar productos</a></li>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- responsividad del header, marca -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- marca -->
+                    <img src="..\img\logo.png" alt="MicroTechPC" style="height: 65px;">
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <!-- menú izquierdo-->
+                    <ul class="nav navbar-nav">
+                        <li class="active" style="height: 65px;"><a href="../index.php" style="height: 65px; padding-top: 20px;">Lista de productos</a></li>
+                    </ul>
+                    <!-- Campo de búsqueda -->
+                    <form class="navbar-form navbar-left" action="./php/busqueda.php" method="GET" style="margin: 0; padding-top: 15px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="querySEO" required style="width: 600px;">
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </form>
+                    <!-- menú derecho -->
+                    <?php if (!isset($_SESSION['sesion_personal'])): ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="./php/registro.php"><span class="glyphicon glyphicon-user" style="padding-top: 10px;"></span>Registrarse
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./php/iniciar_sesion.php"><span class="glyphicon glyphicon-log-in" style="padding-top: 10px;">
+                                    </span> Ingresar</a>
+                            </li>
                         </ul>
-                    </li>
-                    <?php endif; ?>
-                    <li>
-                        <a href="../php/cerrar_sesion.php"><span class="glyphicon glyphicon-log-out"></span> Cerrar
-                            sesión</a>
-                    </li>
-                    <li>
-                        <a href="../php/carrito.php"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito
-                            de compras</a>
-                    </li>
-                </ul>
+                    <?php else: ?>
+                        <ul class="nav navbar-nav">
+                            <li class="navbar-text quita_margen">
+                                <a href="./perfil.php" class="navbar-link" style="padding-top: 10px;">
+                                    Sesión iniciada como
+                                    <u><?= $_SESSION['sesion_personal']['nombre'] ?></u>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <?php if ($_SESSION['sesion_personal']['super'] == 1): ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                        aria-expanded="false" style="padding-top: 24px;">Modo Administrador <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="./php/consultar_historial.php"><span class="glyphicon glyphicon-list"></span> Consultar historial</a></li>
+                                        <li><a href="./php/modificar_productos.php"><span class="glyphicon glyphicon-cog"></span> Modificar productos</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                            <li>
+                                <a href="./php/cerrar_sesion.php"><span class="glyphicon glyphicon-log-out" style="padding-top: 10px;"></span> Cerrar sesión</a>
+                            </li>
+                            <li>
+                                <a href="./php/carrito.php"><span class="glyphicon glyphicon-shopping-cart" style="padding-top: 10px;"></span> Carrito de compras</a>
+                            </li>
+                        </ul>
+                    <?php endif ?>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-
+        </nav>
+    </header>
 <body class="container">
     <script>
     let id_del_producto = <?=$id_producto?>;

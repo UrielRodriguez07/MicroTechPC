@@ -6,10 +6,7 @@ html {
     background-size: cover;
 }
 
-.container {
-    height: min-content;
-    padding: 60px 3rem 3rem 3rem;
-}
+
 
 .navbar-text{
     margin: 0;
@@ -42,6 +39,8 @@ section{
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+
 @media (max-width:1146px) {
     h1{
         font-size: 3em;

@@ -134,7 +134,7 @@ endif;
             <?php foreach ($historial as $producto): ?>
             <tr>
                 <td>
-                    <img src="../img/productos/<?= $producto["id_producto"]; ?>.png" alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen">
+                    <img src="../img/productos/<?= $producto["id_producto"]; ?>.jpeg" alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen">
                 </td>
                 <td><?=$producto['nombre_usuario']; ?></td>
                 <td><?=$producto['nombre_producto']; ?></td>
