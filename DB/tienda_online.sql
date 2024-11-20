@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2024 a las 01:59:26
+-- Tiempo de generación: 20-11-2024 a las 05:25:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,8 +31,22 @@ CREATE TABLE `carrito` (
   `id_usuario` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_carrito` int(11) NOT NULL,
-  `cantidad_seleccionada` int(11) DEFAULT NULL
+  `cantidad_seleccionada` int(11) DEFAULT NULL,
+  `id_seguro` int(1) DEFAULT NULL,
+  `años` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`id_usuario`, `id_producto`, `id_carrito`, `cantidad_seleccionada`, `id_seguro`, `años`) VALUES
+(5, 5, 57, 5, NULL, NULL),
+(5, 3, 66, 1, 4, 0),
+(5, 3, 70, 1, 2, 2),
+(5, 1, 71, 1, 3, 3),
+(5, 22, 72, 6, 2, 2),
+(5, 11, 73, 4, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -47,6 +61,14 @@ CREATE TABLE `historial_compras` (
   `cantidad_comprada` int(11) DEFAULT NULL,
   `fecha_compra` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial_compras`
+--
+
+INSERT INTO `historial_compras` (`id_historial`, `id_usuario`, `id_producto`, `cantidad_comprada`, `fecha_compra`) VALUES
+(64, 5, 2, 1, '2024-11-18'),
+(65, 5, 3, 1, '2024-11-18');
 
 -- --------------------------------------------------------
 
@@ -71,8 +93,8 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `nombre_producto`, `descripcion_producto`, `cantidad_disponible`, `precio_producto`, `fabricante`, `origen`, `categoria`) VALUES
 (1, 'Dell Inspiron 15 3000', 'Laptop ligera y asequible para tareas académicas. Equipado con un procesador Intel, ideal para navegación y aplicaciones de oficina.', 15, 4900, 'Dell', 'China', 'Estudiantes'),
-(2, 'Dell Vostro 15 3000', 'Ideal para estudiantes, ofrece un equilibrio entre rendimiento y precio. Con pantalla HD y teclado cómodo para escribir.', 12, 5600, 'Dell', 'China', 'Estudiantes'),
-(3, 'Dell Chromebook 3100', 'Perfecta para tareas en línea, con sistema operativo Chrome OS y batería de larga duración, ideal para estudiantes.', 10, 3500, 'Dell', 'China', 'Estudiantes'),
+(2, 'Dell Vostro 15 3000', 'Ideal para estudiantes, ofrece un equilibrio entre rendimiento y precio. Con pantalla HD y teclado cómodo para escribir.', 11, 5600, 'Dell', 'China', 'Estudiantes'),
+(3, 'Dell Chromebook 3100', 'Perfecta para tareas en línea, con sistema operativo Chrome OS y batería de larga duración, ideal para estudiantes.', 9, 3500, 'Dell', 'China', 'Estudiantes'),
 (4, 'Lenovo IdeaPad 330', 'Versátil y fácil de usar, cuenta con un diseño moderno y un rendimiento sólido para trabajos escolares y entretenimiento.', 10, 5600, 'Lenovo', 'China', 'Estudiantes'),
 (5, 'Lenovo IdeaPad 530S', 'Diseño delgado y potente, ideal para estudiantes que necesitan un dispositivo ligero y eficiente.', 8, 6500, 'Lenovo', 'China', 'Estudiantes'),
 (6, 'Lenovo Chromebook C330', 'Compacta y eficiente, con gran conectividad y fácil de manejar, perfecta para el uso diario de estudiantes.', 12, 3200, 'Lenovo', 'China', 'Estudiantes'),
@@ -110,6 +132,28 @@ INSERT INTO `producto` (`id_producto`, `nombre_producto`, `descripcion_producto`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `seguro_daños`
+--
+
+CREATE TABLE `seguro_daños` (
+  `id_seguro` int(1) NOT NULL,
+  `descripcion` varchar(35) DEFAULT NULL,
+  `costo_año` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `seguro_daños`
+--
+
+INSERT INTO `seguro_daños` (`id_seguro`, `descripcion`, `costo_año`) VALUES
+(1, 'Daños por $6,000.00 – $6,999.99 MXN', 1000),
+(2, 'Daños por $7,000.00 – $8,999.99 MXN', 1700),
+(3, 'Daños por $9,000.00 – $15,999.99 MX', 2500),
+(4, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -143,7 +187,8 @@ INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `fecha_nacimiento`, `corr
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_carrito`),
   ADD KEY `carrito_FK_1` (`id_producto`),
-  ADD KEY `carrito_FK` (`id_usuario`);
+  ADD KEY `carrito_FK` (`id_usuario`),
+  ADD KEY `id_seguro` (`id_seguro`);
 
 --
 -- Indices de la tabla `historial_compras`
@@ -160,6 +205,12 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_producto`);
 
 --
+-- Indices de la tabla `seguro_daños`
+--
+ALTER TABLE `seguro_daños`
+  ADD PRIMARY KEY (`id_seguro`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -173,19 +224,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_compras`
 --
 ALTER TABLE `historial_compras`
-  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT de la tabla `seguro_daños`
+--
+ALTER TABLE `seguro_daños`
+  MODIFY `id_seguro` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -202,7 +259,8 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `carrito`
   ADD CONSTRAINT `carrito_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `carrito_FK_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `carrito_FK_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carrito_FK_2` FOREIGN KEY (`id_seguro`) REFERENCES `seguro_daños` (`id_seguro`);
 
 --
 -- Filtros para la tabla `historial_compras`
