@@ -2,6 +2,8 @@
 /*
 var id_s=0;
 var años_s=0;*/
+
+
 /*funciones*/
 function comprar(arreglo,v){ // arreglo de [arreglos de (cantidad, id) en string]
     var url="";

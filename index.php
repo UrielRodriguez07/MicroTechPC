@@ -214,7 +214,7 @@ include_once("./config/config.php");
                 }
         ?>
                 <div class="card text-center">
-                    <img class="card-img-top" src="./img/productos/<?= $row['id_producto'] ?>.jpeg" alt="Card image cap">
+                    <img style="border-radius: 20px;" class="card-img-top" src="./img/productos/<?= $row['id_producto'] ?>.jpeg" alt="Card image cap">
                     <div class="card-body">
                         <hr class="solid">
 

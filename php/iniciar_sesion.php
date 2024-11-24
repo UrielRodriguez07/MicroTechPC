@@ -44,11 +44,11 @@ session_start();
             </li>
 
             <li>
-                <a href="./php/registro.php"><span class="fa fa-user-plus"></span> Registrarse</a>
+                <a href="../php/registro.php"><span class="fa fa-user-plus"></span> Registrarse</a>
             </li>
 
             <li>
-                <a href="./php/iniciar_sesion.php" class="active"><span class="fa fa-sign-in"></span> Ingresar</a>
+                <a href="../php/iniciar_sesion.php" class="active"><span class="fa fa-sign-in"></span> Ingresar</a>
             </li>
 
         </ul>
@@ -64,74 +64,36 @@ session_start();
     include "./valida_inicio_sesion.php";
     ?>
     <!-- formulario -->
-
-    <!--
-    <div class="container" id="container">
+     
+    <div class="container-form" id="container">
         <div class="form-container sign-in-container">
-            <form action="#" class="login-form" method="$_POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <form class="login-form" method="POST" action="./iniciar_sesion.php">
                 <h1>Inicia Sesión</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>Ya tienes una cuenta? Inicia sesión</span>
-                <input type="text" placeholder="Nombre de usuario" value="<?= $nombre ?>"/>
-                <input type="password" placeholder="Contraseña" value="<?php echo $contra ?>"/>
+                <span style="font-size: 16px;">Ya tienes una cuenta? Inicia sesión</span>
+                <span class="error" style="color: red; font-size:18px"><?php echo $nombreErr ?></span>
+                <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="username" value="<?= $nombre ?>"/>
+                <span class="error" style="color: red; font-size:18px"><?php echo $contraErr ?></span>
+                <input type="password" name="contrasena" placeholder="Contraseña" autocomplete="password" value="<?php echo $contra ?>"/>
                 <a href="#">Olvidaste tu contraseña?</a>
                 <input type="submit" class="btn btn-default comprar" value="Entrar"></input>
-                <button type="submit">Iniciar sesión</button>
             </form>
         </div>
+
         <div class="overlay-container">
             <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
-                </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <h1>Aun sin registrarse?</h1>
+                    <p style="font-size: 20px;">Ingresa tus datos para iniciar tu aventura de compras</p>
+                    <input type="submit" class="btn btn-default comprar" value="Registrarse" style="background-color:#373737;"></input>
                 </div>
             </div>
         </div>
     </div>
--->
-
-
-
-
-
-    
-    <div class="centrar">
-        <h1 style="text-align:center; margin:0">Iniciar sesión</h1>
-        <form class="form form-horizontal" method="POST" action="./iniciar_sesion.php">
-            <div class="form-group">
-                <label for="nombre" class="control-label">Nombre de usuario: <span class="error"><?php echo $nombreErr ?></span></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    </div>
-                    <input type="text" name="nombre" class="form-control" autocomplete="username" value="<?= $nombre ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="contrasena" class="control-label">Contraseña <span class="error"><?php echo $contraErr ?></span></label>
-                <div class="input-group">
-                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
-                    <input type="password" class="form-control" name="contrasena" placeholder="Password" autocomplete="password" value="<?php echo $contra ?>">
-                </div>
-            </div>
-            <p class="no-registrado">¿No tienes cuenta? <a class="btn-link" href="./registro.php">Registrarse</a></p>
-            <div class="form-group boton">
-                <input type="submit" class="btn btn-default comprar" value="Entrar"></input>
-            </div>
-        </form>
-    </div>
-
-
-
 
     <!---------------------------------------- footer ------------------------------------------------------------------------------>
 

@@ -37,7 +37,7 @@ else:
     
     $nombre_imagen=$iddos[0];
     $ruta_imagen=$_FILES["imagen_producto"]["tmp_name"];
-    $ruta_a_subir="../img/productos/$nombre_imagen.png";
+    $ruta_a_subir="../img/productos/$nombre_imagen.jpeg";
     move_uploaded_file($ruta_imagen,$ruta_a_subir);
 
 
