@@ -20,6 +20,8 @@ else:
     foreach ($arreglo as $indice => $valor) {
         $cantidad_seleccionada=$valor[0];  //  el primer [0] es el primero producto
         $id_producto=$valor[1];
+        $id_s = $valor[2];
+        $años = $valor[3];
         
         // disminuir el numero de elementos
         $result=mysqli_query($con, "SELECT cantidad_disponible FROM producto WHERE id_producto=$id_producto;");
@@ -31,8 +33,8 @@ else:
         // registrar la compra en el historial de compras
         date_default_timezone_set("America/Mexico_City");
         $fecha_actual=date("Y-m-d");
-        $query="INSERT INTO historial_compras (id_usuario,id_producto,cantidad_comprada,fecha_compra) 
-            VALUES ($id_usuario,$id_producto,$cantidad_seleccionada,'$fecha_actual');";
+        $query="INSERT INTO historial_compras (id_usuario,id_producto,cantidad_comprada,fecha_compra,id_seguro,años) 
+            VALUES ($id_usuario,$id_producto,$cantidad_seleccionada,'$fecha_actual','$id_s','$años');";
         $otro=mysqli_query($con, $query);
     }
 

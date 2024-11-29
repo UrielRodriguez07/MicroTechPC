@@ -27,6 +27,7 @@ else:
             "descripcion" => $row['descripcion'],
             "años" => $row['años'],
             "costo_año" => $row['costo_año'],
+            "id_seguro" => $row['id_seguro'],
         ));
     endwhile;
 
@@ -137,7 +138,7 @@ $arreglo_para_comprar = array();
                 </li>
                 <?php foreach ($arreglo_de_productos as $producto):
                     // [0]=
-                    array_push($arreglo_para_comprar, ($producto["cantidad"] . "," . $producto["id"] . ""));
+                    array_push($arreglo_para_comprar, ($producto["cantidad"] . "," . $producto["id"] . "," . $producto["id_seguro"] . "," . $producto["años"] . ""));//pasar el i del seguro //deshacer lo de pantalla compra
                 ?>
                     <li class="table-row">
                         <div class="col col-1"><img src="../img/productos/<?= $producto["id"] ?>.jpeg" alt="producto <?= $producto["nombre"] ?>" class="imagen"></div>

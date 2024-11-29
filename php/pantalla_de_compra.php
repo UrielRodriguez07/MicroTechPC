@@ -17,6 +17,8 @@ $con = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
 if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:
+
+
     $usuario = [];
     $result = mysqli_query($con, "SELECT * FROM usuario WHERE id_usuario=" . $id_usuario . ";");
     while ($row = mysqli_fetch_array($result)):
@@ -29,10 +31,13 @@ else:
 
     // recorrer el arreglo de productos para hacer un arreglo de productos mas detallado
     $producto = [];
+    $seguro = [];
     foreach ($arreglo as $indice => $valor) {
         $cantidad = $valor[0];  //  el primer [0] es el primero producto
         $id_producto = $valor[1];
-        /// AQUI
+        $id_s = $valor[2];
+        $años = $valor[3];
+            /// AQUI
         $result = mysqli_query($con, "SELECT * FROM producto WHERE id_producto=" . $id_producto . ";");
         while ($row = mysqli_fetch_array($result)) {
             array_push($producto, array(
@@ -42,7 +47,16 @@ else:
                 "id_producto" => $id_producto
             ));
         }
-    }
+        $result = mysqli_query($con, "SELECT * FROM seguro_daños WHERE id_seguro=" . $id_s . ";");
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($seguro, array(
+                "descripcion" => $row['descripcion'],
+                "costo_año" => $row['costo_año'],
+                "años"=> $años,
+                "id_seguro"=>$id_s
+                ));
+            }
+        }
 
     //recorrer el arreglo para agregar los detalles del seguro por daños accidentales
 
@@ -130,9 +144,9 @@ endif;
 
 <body class="container-verify-purchase">
     <h1>Pantalla de compra</h1>
+    <?php $aux=0;?>
     <?php foreach ($producto as $value) : ?>
         <div class="content-purchase">
-
             <!-- dirección, numero de tarjeta, correo -->
             <div class="info-fact">
                 <h4>Información de facturación</h4>
@@ -142,15 +156,15 @@ endif;
                     <p><b>Correo:</b> <?= $usuario[0]['correo']; ?></p>
                 </div>
             </div>
-
             <div class="info-verification">
                 <h4>Confirmación de compra</h4> <!-- datos de los productos  NUEVO-->
                 <div class="center-text">
                     <p><b>Nombre:</b> <?= $value['nombre']; ?></p>
                     <p><b>Precio:</b> $<?= number_format(floatval($value['precio']), 2, '.', ',') ?></p>
                     <p><b>Cantidad:</b> <?= $value['cantidad']; ?></p>
+                    <p><b>GARANTIA: </b><?= $seguro[$aux]['descripcion']; ?> a $<?= number_format(floatval($seguro[$aux]['costo_año'])*floatval($seguro[$aux]['años']), 2, '.', ',')?></p>
                     <p><b>Total:</b>
-                        $<?= number_format(floatval($value['cantidad'] * floatval($value['precio'])), 2, '.', ','); ?>
+                        $<?= number_format((((floatval($value['precio'])))+(floatval($seguro[$aux]['costo_año'])*floatval($seguro[$aux]['años'])))*(floatval($value['cantidad'])), 2, '.', ','); ?>
                     </p>
                 </div>
             </div>
@@ -158,6 +172,7 @@ endif;
                 <img style="border-radius: 20px;" src="../img/productos/<?= $value['id_producto'] ?>.jpeg" alt="<?= $value['nombre'] ?>">
             </div>
         </div>
+        <?php $aux++;?>
     <?php endforeach; ?>
 
     <script>

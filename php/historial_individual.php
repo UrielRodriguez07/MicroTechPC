@@ -15,12 +15,15 @@ if (mysqli_connect_errno()) :
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 else:
     $historial = [];
-    $result = mysqli_query($con, "SELECT h.fecha_compra,p.id_producto,p.nombre_producto,p.precio_producto,h.cantidad_comprada FROM producto as p INNER JOIN historial_compras as h ON p.id_producto=h.id_producto WHERE h.id_usuario=" . $id_usuario . ";");
+    //$result = mysqli_query($con, "SELECT * FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto INNER JOIN seguro_daños ON carrito.id_seguro = seguro_daños.id_seguro WHERE carrito.id_usuario=" . $_SESSION['sesion_personal']['id'] . ";");
+    $result = mysqli_query($con, "SELECT * FROM historial_compras as h INNER JOIN producto as p ON p.id_producto=h.id_producto INNER JOIN seguro_daños ON h.id_seguro = seguro_daños.id_seguro WHERE h.id_usuario=" . $id_usuario . ";");
     $n_productos = mysqli_num_rows($result);
     while ($row = mysqli_fetch_array($result)):
         $precio = $row['precio_producto'];
         $cantidad = $row['cantidad_comprada'];
-        $total = $precio * $cantidad;
+        $costo_año=$row['costo_año'];
+        $años = $row['años'];
+        $total = ($precio+($costo_año*$años))* $cantidad;
         array_push($historial, array(
             "id_producto" => $row['id_producto'],
             "nombre_producto" => $row['nombre_producto'],
@@ -28,6 +31,10 @@ else:
             "cantidad_comprada" => $cantidad,
             "total" => $total,
             "fecha" => $row['fecha_compra'],
+            "descripcion"=>$row['descripcion'],
+            "costo_año"=>$costo_año,
+            "años" => $años,
+            
         ));
     endwhile;
     // cerrar conexión
@@ -127,6 +134,8 @@ endif;
                     <div class="col col-3">Fecha de compra</div>
                     <div class="col col-4">Cantidad</div>
                     <div class="col col-5">Precio por unidad</div>
+                    <div class="col col-4">Tipo de garantia</div>
+                    <div class="col col-5">Costo por año y unidad</div>
                     <div class="col col-6">Precio total</div>
                 </li>
                 <?php foreach ($historial as $producto): ?>
@@ -134,9 +143,11 @@ endif;
                         <div class="col col-1"><img style="border-radius: 20px;" src="../img/productos/<?= $producto["id_producto"]; ?>.jpeg" alt="producto <?= $producto["nombre_producto"]; ?>" class="imagen"></div>
                         <div class="col col-2"><?= $producto['nombre_producto']; ?></div>
                         <div class="col col-3"><?= $producto['fecha']; ?></div>
-                        <div class="col col-4"><?= $producto['precio_producto'] ?></div>
-                        <div class="col col-5">$<?= number_format(floatval($producto['cantidad_comprada'])); ?></div>
-                        <div class="col col-6"><?= $producto['total']; ?></div>
+                        <div class="col col-4"><?=$producto['cantidad_comprada']; ?></div>
+                        <div class="col col-5">$<?= number_format(floatval($producto['precio_producto'] ))?> MXN</div>
+                        <div class="col col-4"><?=$producto['descripcion']; ?></div>
+                        <div class="col col-5">$<?= number_format(floatval($producto['costo_año'] ))?> MXN</div>
+                        <div class="col col-6">$<?= number_format(floatval($producto['total']))?>MXN</div>
                     </li>
                 <?php endforeach; ?>
             </ul>

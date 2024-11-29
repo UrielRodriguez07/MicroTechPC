@@ -41,11 +41,11 @@ function enviarAPantallaDeCompraUno(id,id_s,año_s){
     url+=cantidad_seleccionada;
     url+=",";
     url+=id;
-    url+="\&v=0";
-    url+="\&id_s=";
+    url+=",";
     url+=id_s;
-    url+="\&años=";
+    url+=",";
     url+=año_s;
+    url+="\&v=0";
     window.location.replace(url);
 }
 function enviarAPantallaDeCompraMuchos(arreglo_local){
