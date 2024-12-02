@@ -317,8 +317,8 @@ include_once("./config/config.php");
 
             <hr>
             <div class="footer-text">
-                <p>Politica de privacidad</p>
-                <p>Todos los derechos reservados</p>
+            <a style="font-size: 20px; color: #aa96da;" target="_blank" href="./terminos&condiciones.php">Terminos y condiciones</a>
+            <p>Todos los derechos reservados</p>
             </div>
         </div>
     </div>
