@@ -145,7 +145,7 @@ endif;
                         <div class="col col-3"><?= $producto['fecha']; ?></div>
                         <div class="col col-4"><?=$producto['cantidad_comprada']; ?></div>
                         <div class="col col-5">$<?= number_format(floatval($producto['precio_producto'] ))?> MXN</div>
-                        <div class="col col-4"><?=$producto['descripcion']; ?></div>
+                        <div class="col col-4"><?=$producto['descripcion']; ?> Durante: <?= number_format(floatval($producto['años']))?> año/s</div>
                         <div class="col col-5">$<?= number_format(floatval($producto['costo_año'] ))?> MXN</div>
                         <div class="col col-6">$<?= number_format(floatval($producto['total']))?>MXN</div>
                     </li>

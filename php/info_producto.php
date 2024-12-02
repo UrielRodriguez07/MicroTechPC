@@ -224,7 +224,7 @@ endif;
 
                     const valorSeleccionado = parseInt(select.value); // Convertir a entero
                     let id_s = valorSeleccionado;
-                    const valorSeleccionado2 = parseInt(select.value); // Convertir a entero
+                    const valorSeleccionado2 = parseInt(tiempo.value); // Convertir a entero
                     let años_s = valorSeleccionado2;
                     comprobarTipoCompra(aux, id_del_producto, id_s, años_s);
                 } else {
